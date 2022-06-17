@@ -13,7 +13,8 @@ public class GuiUtils {
   public static final Color BACKGROUND_CIRCLE = new Color(255,236,61);
   public static final Color FOREGROUND = new Color(250,214,52);
   public static final Color COLOR_BUTTON = new Color(52,53,250);
-  public static final String FONT = "Arial";
+  public static final String FONT = "Arial"; 
+  public static final Dimension DIMENSION_TITLE = new Dimension(300,200);
 
   private  static void setShapeButton(JButton jbtn){
     Border compound;
@@ -46,6 +47,20 @@ public class GuiUtils {
     titulo.setTitleJustification(TitledBorder.CENTER);
     jpnl.setBorder(titulo);
 
+  }
+
+  public static void setSliderHorizontal(JSlider jslider, String name){
+    jslider.setMajorTickSpacing(10);
+    jslider.setMinorTickSpacing(1);
+    jslider.setBackground(BACKGROUND);
+    jslider.setForeground(FOREGROUND);
+    jslider.setPaintTicks(true);
+    jslider.setPaintLabels(true);
+    Border Colorline = BorderFactory.createLineBorder(FOREGROUND);
+    TitledBorder title = new TitledBorder(Colorline, name); 
+    title.setTitleColor(FOREGROUND);
+    title.setTitleFont(new Font(FONT, Font.BOLD | Font.ITALIC, 12));
+    jslider.setBorder(title);
   }
 
 

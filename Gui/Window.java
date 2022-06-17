@@ -1,9 +1,7 @@
 package Gui;
 
 import javax.swing.JFrame;
-import javax.swing.*;
 import java.awt.*;
-import Gui.GuiUtils;
 
 public class Window extends JFrame{
   
@@ -18,24 +16,19 @@ public class Window extends JFrame{
   /** Configure the main window elements
    */
   private void initialize(){
-    setLayout(new BorderLayout());
 
-    add(getPnlTitle(), BorderLayout.PAGE_START);
+    setMinimumSize(new Dimension(1000, 700));
+    setLayout(new BorderLayout());
+    add(getPnlTitle(), BorderLayout.PAGE_START);   
     add(getPnlMenu(), BorderLayout.PAGE_END);
-    
-    getPnlMenu().getHeight();
-    getPnlTitle().getHeight();
-    
-    PanelCircle aux = getPnlCircle();
-    aux.setCirclePlaces();
-    add(aux);
-    
+    setVisible(true);
+
+    add(getPnlCircle(), BorderLayout.CENTER);
     setVisible(true);
     setResizable(false);
     getContentPane().setBackground(GuiUtils.BACKGROUND);
     getContentPane().setForeground(GuiUtils.FOREGROUND);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    setSize(500, 600);
 
   }
 
@@ -58,8 +51,19 @@ public class Window extends JFrame{
 
   private PanelCircle getPnlCircle(){
     if(pnlCircle == null){
-      pnlCircle = new PanelCircle();
+      pnlCircle = new PanelCircle(getSizeComponents());
+      pnlCircle.setCirclePlaces();
     }
     return pnlCircle;
+  }
+
+  private Dimension getSizeComponents(){
+    Dimension aux = null;
+    Dimension pnlTitleDimension = pnlTitle.getSize();
+    Dimension pnlMenuDimension = pnlMenu.getSize();
+    Dimension pnlFrame = this.getMinimumSize();
+    double height =  pnlFrame.getHeight() - (pnlTitleDimension.getHeight() + pnlMenuDimension.getHeight());
+    aux = new Dimension((int) pnlFrame.getWidth(), (int) height);
+    return aux;
   }
 }

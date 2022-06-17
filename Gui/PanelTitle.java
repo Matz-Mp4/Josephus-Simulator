@@ -11,6 +11,7 @@ public class PanelTitle extends JPanel{
 
   public PanelTitle(){
     initialize();
+    setMinimumSize(getSize());
   }
   private void initialize(){
     add(getPnlTitle());
@@ -31,8 +32,11 @@ public class PanelTitle extends JPanel{
       jlbTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
       
       pnlTitle.add(jlbTitle);
-    
     }
     return pnlTitle;
+  }
+
+  public Dimension getMinimumSize(){
+    return super.getMinimumSize();
   }
 }
