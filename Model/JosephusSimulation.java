@@ -10,7 +10,6 @@ public class JosephusSimulation{
         this.storer = storer;
         this.step = step;
         this.amount = amount;
-        createPeople();
     }
 
     /** Simulates Josephus' algorithm
@@ -41,13 +40,9 @@ public class JosephusSimulation{
     }
     
     /** Create people given the amount passed by the constructor
-     */
-    private void createPeople(){
-        if(storer != null){
-            for(int i = 1; i <= amount; i++){
-                storer.inserirInicio(new Person());
-            }
-        }
+    */
+    private void createPeople(Object aux){
+        storer.inserirInicio(new Person(aux));
     }
 
 }

@@ -9,6 +9,7 @@ public class Window extends JFrame{
   
   private PanelTitle pnlTitle;
   private PanelMenu pnlMenu;
+  private PanelCircle pnlCircle;
 
   public Window(){
     initialize();
@@ -18,8 +19,17 @@ public class Window extends JFrame{
    */
   private void initialize(){
     setLayout(new BorderLayout());
+
     add(getPnlTitle(), BorderLayout.PAGE_START);
-    add(getPnlMenu(), BorderLayout.CENTER);
+    add(getPnlMenu(), BorderLayout.PAGE_END);
+    
+    getPnlMenu().getHeight();
+    getPnlTitle().getHeight();
+    
+    PanelCircle aux = getPnlCircle();
+    aux.setCirclePlaces();
+    add(aux);
+    
     setVisible(true);
     setResizable(false);
     getContentPane().setBackground(GuiUtils.BACKGROUND);
@@ -43,5 +53,13 @@ public class Window extends JFrame{
     }
 
     return pnlMenu;
+  }
+
+
+  private PanelCircle getPnlCircle(){
+    if(pnlCircle == null){
+      pnlCircle = new PanelCircle();
+    }
+    return pnlCircle;
   }
 }

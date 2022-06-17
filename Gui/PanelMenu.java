@@ -6,7 +6,8 @@ import javax.swing.*;
 
 public class PanelMenu extends JPanel{
 
-  private JButton jbtnStart ;
+  private JButton jbtnStart;
+  private JButton jbtnStop;
 
   public PanelMenu(){
     initialize();
@@ -14,15 +15,22 @@ public class PanelMenu extends JPanel{
   }
 
   private void initialize(){
-    setLayout(new FlowLayout());
-    jbtnStart = new JButton("Start");
-    jbtnStart.setBackground(Color.red);
-    jbtnStart.setForeground(Color.white);
 
+    GuiUtils.setPanelBorder(this, "Menu");
+    
+    setLayout(new FlowLayout());
     setBackground(GuiUtils.BACKGROUND);
-    setForeground(GuiUtils.FOREGROUND);
+    setForeground(GuiUtils.BACKGROUND);
+
+    jbtnStart = new JButton("Start");
+    GuiUtils.setButton(jbtnStart);
+    jbtnStop = new JButton("Stop");
+    GuiUtils.setButton(jbtnStop);
+ 
     add(jbtnStart);
-    new Circle(this);
+    GuiUtils.createGap(this, 10, 10);
+    add(jbtnStop);
+
   }
 }
  
