@@ -1,15 +1,21 @@
-package Model;
+package Controller;
+
+import Model.*;
+import Gui.*;
+import java.awt.*;
 
 public class JosephusSimulation{
 
-    private IListaLigada storer;
+    private ILinkedList storer;
     private int step;
     private int amount;
+    private boolean stop = false;
 
-    JosephusSimulation(IListaLigada storer, int step, int amount){
+    JosephusSimulation(ILinkedList storer, int step, int amount){
         this.storer = storer;
         this.step = step;
         this.amount = amount;
+        startSimulation();
     }
 
     /** Simulates Josephus' algorithm
@@ -30,19 +36,18 @@ public class JosephusSimulation{
                 if(cont == step){
                     dead = aux;
                     Person auxDead = (Person) dead.getConteudo();
-                    auxDead.setAlive(false);
+                    RoundedPanel rpnl  = (RoundedPanel) auxDead.getObject();
+                    rpnl.changeColor(Color.red);
                     aux = aux.getProximo();
                     cont = 1;
                     storer.remover(dead.getId());
                 }
-            }while(n != 1);
+            }while((n != 1) && (this.stop != true));
         }
     }
-    
-    /** Create people given the amount passed by the constructor
-    */
-    private void createPeople(Object aux){
-        storer.inserirInicio(new Person(aux));
-    }
 
+    public void stopSimulation(){
+        this.stop = true;
+    }
+   
 }

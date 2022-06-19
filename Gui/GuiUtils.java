@@ -52,13 +52,13 @@ public class GuiUtils {
   public static void setSliderHorizontal(JSlider jslider, String name){
     jslider.setMajorTickSpacing(10);
     jslider.setMinorTickSpacing(1);
-    jslider.setBackground(BACKGROUND);
-    jslider.setForeground(FOREGROUND);
+    jslider.setBackground(FOREGROUND);
+    jslider.setForeground(BACKGROUND);
     jslider.setPaintTicks(true);
     jslider.setPaintLabels(true);
-    Border Colorline = BorderFactory.createLineBorder(FOREGROUND);
+    Border Colorline = BorderFactory.createLineBorder(BACKGROUND);
     TitledBorder title = new TitledBorder(Colorline, name); 
-    title.setTitleColor(FOREGROUND);
+    title.setTitleColor(BACKGROUND);
     title.setTitleFont(new Font(FONT, Font.BOLD | Font.ITALIC, 12));
     jslider.setBorder(title);
   }

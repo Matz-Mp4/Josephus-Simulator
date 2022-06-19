@@ -49,10 +49,9 @@ public class Window extends JFrame{
   }
 
 
-  private PanelCircle getPnlCircle(){
+  public PanelCircle getPnlCircle(){
     if(pnlCircle == null){
       pnlCircle = new PanelCircle(getSizeComponents());
-      pnlCircle.setCirclePlaces();
     }
     return pnlCircle;
   }

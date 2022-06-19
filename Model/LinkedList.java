@@ -2,7 +2,7 @@ package Model;
   
 import java.util.Random;
 
-public class ListaLigada implements IListaLigada {
+public class LinkedList implements ILinkedList {
     private No inicio; // ref para primeiro elemento
     private No fim;    // ref para ultimo elemento
 
@@ -10,7 +10,7 @@ public class ListaLigada implements IListaLigada {
     private Random r = new Random(System.currentTimeMillis());
 
     // -------------------------------------------------------------
-    public ListaLigada() {   
+    public LinkedList() {   
         setInicio(null);
         setFim(null);
         setQtdNos(0);
