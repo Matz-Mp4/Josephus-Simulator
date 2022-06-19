@@ -4,6 +4,9 @@ import java.awt.*;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.border.*;
+
+import Gui.Panel.RoundedPanel;
+
 import javax.swing.*;
 
 
@@ -12,7 +15,10 @@ public class GuiUtils {
   public static final Color BACKGROUND = new Color(1,1,80);
   public static final Color BACKGROUND_CIRCLE = new Color(255,236,61);
   public static final Color FOREGROUND = new Color(250,214,52);
-  public static final Color COLOR_BUTTON = new Color(52,53,250);
+  public static final Color FOREGROUND_MENU = new Color(52,63,250);
+  //public static final Color COLOR_BUTTON = new Color(52,53,250);
+  public static final Color COLOR_BUTTON = new Color(207, 0, 15);
+
   public static final String FONT = "Arial"; 
   public static final Dimension DIMENSION_TITLE = new Dimension(300,200);
 

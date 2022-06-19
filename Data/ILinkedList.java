@@ -1,4 +1,4 @@
-package Model;
+package Data;
 
 public interface ILinkedList{
     public boolean estaVazia(); 
@@ -11,4 +11,5 @@ public interface ILinkedList{
     public Object remover(long chave);
     public String toStringDoFim();
     public int getQtdNos();
+    public void limparLista();
 }

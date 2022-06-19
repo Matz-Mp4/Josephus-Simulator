@@ -1,10 +1,13 @@
-package Controller;
+package Application;
 
-import Model.*;
 import Gui.*;
+import Gui.Panel.RoundedPanel;
+
 import java.awt.*;
 
-public class JosephusSimulation{
+import Data.*;
+
+public class JosephusSimulation extends Thread{
 
     private ILinkedList storer;
     private int step;
@@ -30,6 +33,7 @@ public class JosephusSimulation{
 
             do{
                 No current = aux;
+                if(aux != null){
                 aux = aux.getProximo();
                 cont += 1;
 
@@ -42,12 +46,31 @@ public class JosephusSimulation{
                     cont = 1;
                     storer.remover(dead.getId());
                 }
+            } else this.stop = true;
             }while((n != 1) && (this.stop != true));
         }
     }
 
     public void stopSimulation(){
         this.stop = true;
+    }
+
+    public void run(){
+        startSimulation();
+    }
+
+    public  void setStep(int step){
+        this.step = step;
+        
+    }
+
+    public void setLinkedList(ILinkedList list){
+        this.storer = list;
+    }
+    
+    public void setAmount(int amounT){
+        amount = amounT;
+        
     }
    
 }

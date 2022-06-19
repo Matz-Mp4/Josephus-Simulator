@@ -1,5 +1,4 @@
-import Controller.StartController;
-import Gui.Window;
+import Application.StartController;
 
 public class App{
 

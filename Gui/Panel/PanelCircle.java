@@ -1,8 +1,9 @@
-package Gui;
+package Gui.Panel;
 
 import javax.swing.*;
 
-import Model.ILinkedList;
+import Data.ILinkedList;
+import Gui.GuiUtils;
 
 import java.awt.*;
 
@@ -47,5 +48,28 @@ public class PanelCircle extends JPanel{
       pnlCircle.changeColor(newColor);
     }
   }
+
+
+     /**
+   * Function that places the circles/people on the main panel. Automatically adjusts to screen size
+   * It works based on the use of sine and cosine
+   */
+  public  void setCirclePlaces(int amount){
+    int centerX = (int) (getMinimumSize().width/2)-20; //add 20 to center the 'centerX'
+    int centerY = (int) (getMinimumSize().height/2)-100; //add 35 gap between components
+    int range = centerY;
+    double angule;
+    int amountCircles = 360/amount;
+
+    for(int i = 0; i <= 360; i+= amountCircles){
+      RoundedPanel aux = addCircle();
+      angule = (Math.PI/180) * i;
+      double boundX = Math.cos(angule) * range + centerX;
+      double boundY = Math.sin(angule) * range + centerY;
+      aux.setBounds((int)boundX, (int)boundY, 30, 30); //height and width configure the panel shape
+      add(aux);
+    }
+  }
+
 
 }

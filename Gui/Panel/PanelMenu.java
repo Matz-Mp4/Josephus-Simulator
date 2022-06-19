@@ -1,8 +1,8 @@
-package Gui;
+package Gui.Panel;
 
 import javax.swing.JPanel;
 
-import Gui.Events.MenuEvent;
+import Gui.GuiUtils;
 
 import java.awt.*;
 import javax.swing.*;
@@ -11,13 +11,14 @@ public class PanelMenu extends JPanel{
 
   private JButton jbtnStart;
   private JButton jbtnStop;
-  private JSlider jslider;
+  private JSlider jsliderCircles;
+  private JSlider jsliderSteps;
   private RoundedPanel rpnlMenu;
+  private  StatesButton sbValidator = new StatesButton();
 
   public PanelMenu(){
     initialize();
     setMinimumSize(getSize());
-    new MenuEvent(this);
   }
 
   private void initialize(){
@@ -28,6 +29,7 @@ public class PanelMenu extends JPanel{
     setBackground(GuiUtils.BACKGROUND);
     setForeground(GuiUtils.BACKGROUND);
     add(getRoundedPanelMenu());
+    sbValidator = new StatesButton();
 
   }
 
@@ -37,21 +39,26 @@ public class PanelMenu extends JPanel{
      rpnlMenu = new RoundedPanel(40, GuiUtils.FOREGROUND);
      rpnlMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
      rpnlMenu.setBackground(GuiUtils.BACKGROUND);
-     rpnlMenu.setPreferredSize(new Dimension(800, 80));
+     rpnlMenu.setPreferredSize(new Dimension(700, 70));
      rpnlMenu.setLayout(new FlowLayout());
 
       jbtnStart = new JButton("Start");
       GuiUtils.setButton(jbtnStart);
       jbtnStop = new JButton("Stop");
       GuiUtils.setButton(jbtnStop);
-      jslider = new JSlider(JSlider.HORIZONTAL, 0, 30, 5);
-      GuiUtils.setSliderHorizontal(jslider, "Sem Pressao Aqui é xandao");
+      jsliderCircles = new JSlider(JSlider.HORIZONTAL, 2, 30, 10);
+      GuiUtils.setSliderHorizontal(jsliderCircles, "Amount Circles");
+      jsliderSteps = new JSlider(JSlider.HORIZONTAL, 1, 50, 3);
+      GuiUtils.setSliderHorizontal(jsliderSteps, " Steps ");
+
 
       rpnlMenu.add(jbtnStart);
-      GuiUtils.createGap(this, 30, 10);
+      GuiUtils.createGap(this, 30, 30);
       rpnlMenu.add(jbtnStop);
-      GuiUtils.createGap(this, 30, 10);
-      rpnlMenu.add(jslider);
+      GuiUtils.createGap(this, 30, 30);
+      rpnlMenu.add(jsliderCircles);
+      GuiUtils.createGap(this, 30, 30);
+      rpnlMenu.add(jsliderSteps);
       
     }
     return rpnlMenu;
@@ -61,8 +68,12 @@ public class PanelMenu extends JPanel{
     return super.getMinimumSize();
   }
 
-  public JSlider getSlider(){
-    return jslider;
+  public JSlider getSliderAmount(){
+    return jsliderCircles;
+  }
+
+  public JSlider getSliderStep(){
+    return jsliderSteps;
   }
 
   public JButton getBtnStart(){
@@ -71,6 +82,10 @@ public class PanelMenu extends JPanel{
 
   public JButton getBtnStop(){
     return jbtnStop;
+  }
+
+  public StatesButton getStatesButton(){
+    return sbValidator;
   }
 }
  

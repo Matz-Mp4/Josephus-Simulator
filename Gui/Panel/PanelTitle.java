@@ -1,6 +1,9 @@
-package Gui;
+package Gui.Panel;
 
 import javax.swing.JPanel;
+
+import Gui.GuiUtils;
+
 import java.awt.*;
 import javax.swing.*;
 

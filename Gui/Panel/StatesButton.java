@@ -1,8 +1,13 @@
-package Gui.Events;
+package Gui.Panel;
+import java.beans.PropertyChangeSupport;
 
 public class StatesButton{
-    private boolean statePlaying;
+    private boolean statePlaying = false;
     private int amountCircles;
+
+
+    public StatesButton(){
+    }
 
     public void setPlayingStatus(boolean status){
       this.statePlaying = status;
@@ -12,11 +17,13 @@ public class StatesButton{
       this.amountCircles = amount;
     }
 
-    public int getAmountCircles(){
-      return this.amountCircles;
+    public boolean getPlayingStatus(){
+        return this.statePlaying;
     }
 
     public boolean isPlaying(){
       return statePlaying;
     }
+
+
 }

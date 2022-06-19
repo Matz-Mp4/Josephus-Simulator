@@ -1,6 +1,12 @@
-package Gui;
+package Application;
 
 import javax.swing.JFrame;
+
+import Gui.GuiUtils;
+import Gui.Panel.*;
+import Application.Events.*;
+import Data.ILinkedList;
+
 import java.awt.*;
 
 public class Window extends JFrame{
@@ -8,10 +14,11 @@ public class Window extends JFrame{
   private PanelTitle pnlTitle;
   private PanelMenu pnlMenu;
   private PanelCircle pnlCircle;
+  private JosephusSimulation simulation;
+  private ILinkedList list;
 
   public Window(){
     initialize();
-    
   }
   /** Configure the main window elements
    */
@@ -31,6 +38,19 @@ public class Window extends JFrame{
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
   }
+
+    public void setSimulation(JosephusSimulation simulation){
+      if(simulation != null){  
+        this.simulation = simulation;
+      }
+    }
+    
+    public void setLinkedList(ILinkedList list){
+      if(list != null){
+        this.list = list;
+        MenuEvent.setEvent(pnlMenu, getPnlCircle(), simulation, list);
+      }
+    }
 
   private PanelTitle getPnlTitle(){
 
