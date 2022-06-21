@@ -1,4 +1,5 @@
 package Application;
+
 import Data.*;
 
 public class StartController {
@@ -14,9 +15,9 @@ public class StartController {
     public void inicialize(){
         list = new LinkedList();
         mainWindow = new Window();
-        mainWindow.getPnlCircle().setCirclePlaces(10);
+        mainWindow.getPnlCircle().setCirclePlaces(7);
         mainWindow.getPnlCircle().repaint();
-        jsGame = new JosephusSimulation(list, 3, 10);
+        jsGame = new JosephusSimulation(list, 3, 7);
         mainWindow.setSimulation(jsGame);
         mainWindow.setLinkedList(list);
     }

@@ -46,7 +46,7 @@ public class PanelMenu extends JPanel{
       GuiUtils.setButton(jbtnStart);
       jbtnStop = new JButton("Stop");
       GuiUtils.setButton(jbtnStop);
-      jsliderCircles = new JSlider(JSlider.HORIZONTAL, 2, 30, 10);
+      jsliderCircles = new JSlider(JSlider.HORIZONTAL, 2, 30, 7);
       GuiUtils.setSliderHorizontal(jsliderCircles, "Amount Circles");
       jsliderSteps = new JSlider(JSlider.HORIZONTAL, 1, 50, 3);
       GuiUtils.setSliderHorizontal(jsliderSteps, " Steps ");

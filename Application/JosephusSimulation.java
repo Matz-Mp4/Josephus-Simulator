@@ -14,11 +14,10 @@ public class JosephusSimulation extends Thread{
     private int amount;
     private boolean stop = false;
 
-    JosephusSimulation(ILinkedList storer, int step, int amount){
+    public JosephusSimulation(ILinkedList storer, int step, int amount){
         this.storer = storer;
         this.step = step;
         this.amount = amount;
-        startSimulation();
     }
 
     /** Simulates Josephus' algorithm
@@ -32,36 +31,36 @@ public class JosephusSimulation extends Thread{
             No dead = null;
 
             do{
-                No current = aux;
-                if(aux != null){
                 aux = aux.getProximo();
-                cont += 1;
-
+                cont ++;
                 if(cont == step){
                     dead = aux;
                     Person auxDead = (Person) dead.getConteudo();
                     RoundedPanel rpnl  = (RoundedPanel) auxDead.getObject();
                     rpnl.changeColor(Color.red);
-                    aux = aux.getProximo();
+                    rpnl.repaint();
+                    try { this.sleep (300); } catch (InterruptedException ex) {}
                     cont = 1;
+                    aux = aux.getProximo();
                     storer.remover(dead.getId());
                 }
-            } else this.stop = true;
-            }while((n != 1) && (this.stop != true));
+                n = storer.getQtdNos();
+            }while((n != 1) && (stop == false));
         }
     }
 
     public void stopSimulation(){
         this.stop = true;
+        this.interrupt();
     }
 
     public void run(){
+
         startSimulation();
     }
 
     public  void setStep(int step){
         this.step = step;
-        
     }
 
     public void setLinkedList(ILinkedList list){

@@ -119,9 +119,10 @@ public class LinkedList implements ILinkedList {
             }
             temp.setAnterior(null);
             temp.setProximo(null);
+
+            // Decrementa qtidade de nos
+            setQtdNos(getQtdNos() - 1);
         }
-        // Decrementa qtidade de nos
-        setQtdNos(getQtdNos() - 1);
         return temp;
     }
 
@@ -142,9 +143,9 @@ public class LinkedList implements ILinkedList {
             }
             temp.setAnterior(null);
             temp.setProximo(null);
+            setQtdNos(getQtdNos() - 1);
         }
         // Decrementa qtidade de nos
-        setQtdNos(getQtdNos() - 1);
         return temp;
     }
 
@@ -196,13 +197,14 @@ public class LinkedList implements ILinkedList {
             else {
                 noAtual.getAnterior().setProximo(noAtual.getProximo());
                 noAtual.getProximo().setAnterior(noAtual.getAnterior());
+                setQtdNos(getQtdNos() - 1);
             }
             noAtual.setAnterior(null);
             noAtual.setProximo(null);
-
+            
+            // Decrementa qtidade de nos
         }
-        // Decrementa qtidade de nos
-        setQtdNos(getQtdNos() - 1);
+      
         return noAtual;
     }
 
@@ -246,5 +248,6 @@ public class LinkedList implements ILinkedList {
         setInicio(null);
         setFim(null);
 
+        setQtdNos(0);
     }
 }  
