@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import Gui.GuiUtils;
 import Gui.Panel.*;
 import Application.Events.*;
-import Data.ILinkedList;
 
 import java.awt.*;
 
@@ -14,11 +13,9 @@ public class Window extends JFrame{
   private PanelTitle pnlTitle;
   private PanelMenu pnlMenu;
   private PanelCircle pnlCircle;
-  private MenuEvent events;
 
   public Window(){
     initialize();
-    setEvents();
   }
   /** Configure the main window elements
    */
@@ -39,9 +36,6 @@ public class Window extends JFrame{
 
   }
 
-  private void setEvents(){
-    this.events = new MenuEvent();
-  }
 
   private PanelTitle getPnlTitle(){
 

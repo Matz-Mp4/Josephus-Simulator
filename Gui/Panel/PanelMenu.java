@@ -13,6 +13,7 @@ public class PanelMenu extends JPanel{
   private JButton jbtnStop;
   private JSlider jsliderCircles;
   private JSlider jsliderSteps;
+  private JSlider jsliderDelay;
   private RoundedPanel rpnlMenu;
   private  StatesButton sbValidator = new StatesButton();
 
@@ -39,26 +40,28 @@ public class PanelMenu extends JPanel{
      rpnlMenu = new RoundedPanel(40, GuiUtils.FOREGROUND);
      rpnlMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
      rpnlMenu.setBackground(GuiUtils.BACKGROUND);
-     rpnlMenu.setPreferredSize(new Dimension(700, 70));
+     rpnlMenu.setPreferredSize(new Dimension(800, 75));
      rpnlMenu.setLayout(new FlowLayout());
 
       jbtnStart = new JButton("Start");
       GuiUtils.setButton(jbtnStart);
       jbtnStop = new JButton("Stop");
       GuiUtils.setButton(jbtnStop);
-      jsliderCircles = new JSlider(JSlider.HORIZONTAL, 2, 30, 7);
+      jsliderCircles = new JSlider(JSlider.HORIZONTAL, 2, 30, 5);
       GuiUtils.setSliderHorizontal(jsliderCircles, "Amount Circles");
       jsliderSteps = new JSlider(JSlider.HORIZONTAL, 1, 50, 3);
       GuiUtils.setSliderHorizontal(jsliderSteps, " Steps ");
+      jsliderDelay = new JSlider(JSlider.HORIZONTAL, 1, 11, 3);
+      GuiUtils.setSliderHorizontal(jsliderDelay, " Delay ");
+
 
 
       rpnlMenu.add(jbtnStart);
-      GuiUtils.createGap(this, 30, 30);
       rpnlMenu.add(jbtnStop);
-      GuiUtils.createGap(this, 30, 30);
       rpnlMenu.add(jsliderCircles);
-      GuiUtils.createGap(this, 30, 30);
       rpnlMenu.add(jsliderSteps);
+      rpnlMenu.add(jsliderDelay);
+      
       
     }
     return rpnlMenu;
@@ -86,6 +89,10 @@ public class PanelMenu extends JPanel{
 
   public StatesButton getStatesButton(){
     return sbValidator;
+  }
+
+  public JSlider getSliderDelay(){
+    return jsliderDelay;
   }
 }
  

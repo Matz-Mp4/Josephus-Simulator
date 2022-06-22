@@ -14,6 +14,7 @@ public class JosephusSimulation extends Thread{
     private int amount;
     private boolean stop = false;
     private boolean simulating = false;
+    private int delay;
 
     public JosephusSimulation(ILinkedList storer, int step, int amount){
         this.storer = storer;
@@ -45,7 +46,7 @@ public class JosephusSimulation extends Thread{
                     RoundedPanel rpnl  = (RoundedPanel) auxDead.getObject();
                     rpnl.changeColor(Color.red);
                     rpnl.repaint();
-                    try { Thread.sleep(300);} catch (InterruptedException ex) {}
+                    try { Thread.sleep(delay);} catch (InterruptedException ex) {}
                     cont = 1;
                     aux = aux.getProximo();
                     storer.remover(dead.getId());
@@ -82,5 +83,11 @@ public class JosephusSimulation extends Thread{
         amount = amounT;
         
     }
+
+    public void setDelay(int delay){
+        this.delay = delay;
+        
+    }
+ 
    
 }

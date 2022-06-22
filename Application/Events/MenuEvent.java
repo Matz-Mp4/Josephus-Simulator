@@ -28,6 +28,8 @@ public class MenuEvent{
           
           //Creating a new reference/thread of simulator
           jsAux = new JosephusSimulation(list, pnlMenu.getSliderStep().getValue(), pnlMenu.getSliderAmount().getValue());        
+           int delay = 1000/pnlMenu.getSliderDelay().getValue();
+          jsAux.setDelay(delay);
           pnlMenu.getStatesButton().setPlayingStatus(true);
           jsAux.start();
         }
@@ -60,6 +62,14 @@ public class MenuEvent{
     pnlMenu.getSliderStep().addChangeListener(new ChangeListener(){
       public void stateChanged(ChangeEvent e){
 
+      }
+    });
+
+     pnlMenu.getSliderDelay().addChangeListener(new ChangeListener(){
+      public void stateChanged(ChangeEvent e){
+        int delay = 1000/pnlMenu.getSliderDelay().getValue();
+        //System.out.println(delay);
+        jsAux.setDelay(delay);
       }
     });
   }

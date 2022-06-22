@@ -1,9 +1,9 @@
-import Application.StartController;
+import Application.Start;
 
 public class App{
 
   public static void main(String[] args){
-    StartController main = new StartController();
+    Start main = new Start();
     //main.inicialize();
   }
 }
