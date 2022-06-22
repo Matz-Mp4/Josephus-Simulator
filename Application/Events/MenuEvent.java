@@ -7,39 +7,38 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import Application.JosephusSimulation;
 import Data.ILinkedList;
-import Data.LinkedList;
 import Gui.Panel.*;
 import Data.Person;
 
 public class MenuEvent{
 
   //private static StatesButton sbValidator = new StatesButton();
+  private JosephusSimulation jsAux = new JosephusSimulation();
   
-  public static void setEvent(PanelMenu pnlMenu, PanelCircle pnlCircle, JosephusSimulation simulation, ILinkedList list){
+  public void setEvent(PanelMenu pnlMenu, PanelCircle pnlCircle, ILinkedList list){
     pnlMenu.getBtnStart().addActionListener(new ActionListener(){    
       public void actionPerformed(ActionEvent e){
-        
-        if(pnlMenu.getStatesButton().getPlayingStatus() == false){
+          if(!jsAux.getSimulating()){
+          //Adding circles to linked list
           Component[] components = pnlCircle.getComponents();
           list.limparLista();
           for(Component comp: components){
             if(comp.getClass() == RoundedPanel.class) list.inserirFim(new Person((Object) comp));
           }
-
-          JosephusSimulation simular = new JosephusSimulation(list, pnlMenu.getSliderStep().getValue(), pnlMenu.getSliderAmount().getValue());
           
+          //Creating a new reference/thread of simulator
+          jsAux = new JosephusSimulation(list, pnlMenu.getSliderStep().getValue(), pnlMenu.getSliderAmount().getValue());        
           pnlMenu.getStatesButton().setPlayingStatus(true);
-          simular.start();
-
+          jsAux.start();
         }
-        pnlMenu.getStatesButton().setPlayingStatus(false);
       }
     });
 
     pnlMenu.getBtnStop().addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-          pnlMenu.getStatesButton().setPlayingStatus(false);
-
+          if(jsAux.getSimulating()){
+              jsAux.stopSimulation();
+          }
         }
     });
 

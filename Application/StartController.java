@@ -1,24 +1,24 @@
 package Application;
 
+import Application.Events.MenuEvent;
 import Data.*;
 
 public class StartController {
 
-    private ILinkedList list;
     private Window mainWindow;
-    private JosephusSimulation jsGame;
+    private MenuEvent meEvents;
+    private ILinkedList list;
 
     public StartController(){
         inicialize();
     }
 
     public void inicialize(){
-        list = new LinkedList();
         mainWindow = new Window();
         mainWindow.getPnlCircle().setCirclePlaces(7);
         mainWindow.getPnlCircle().repaint();
-        jsGame = new JosephusSimulation(list, 3, 7);
-        mainWindow.setSimulation(jsGame);
-        mainWindow.setLinkedList(list);
+        meEvents = new MenuEvent();
+        list = new LinkedList();
+        meEvents.setEvent(mainWindow.getPnlMenu(), mainWindow.getPnlCircle(), list);
     }
 }

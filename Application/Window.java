@@ -14,11 +14,11 @@ public class Window extends JFrame{
   private PanelTitle pnlTitle;
   private PanelMenu pnlMenu;
   private PanelCircle pnlCircle;
-  private JosephusSimulation simulation;
-  private ILinkedList list;
+  private MenuEvent events;
 
   public Window(){
     initialize();
+    setEvents();
   }
   /** Configure the main window elements
    */
@@ -39,18 +39,9 @@ public class Window extends JFrame{
 
   }
 
-    public void setSimulation(JosephusSimulation simulation){
-      if(simulation != null){  
-        this.simulation = simulation;
-      }
-    }
-    
-    public void setLinkedList(ILinkedList list){
-      if(list != null){
-        this.list = list;
-        MenuEvent.setEvent(pnlMenu, getPnlCircle(), simulation, list);
-      }
-    }
+  private void setEvents(){
+    this.events = new MenuEvent();
+  }
 
   private PanelTitle getPnlTitle(){
 
@@ -60,7 +51,7 @@ public class Window extends JFrame{
     return pnlTitle;
   }
 
-  private PanelMenu getPnlMenu(){
+  public PanelMenu getPnlMenu(){
     if(pnlMenu == null){
       pnlMenu = new PanelMenu();
     }
