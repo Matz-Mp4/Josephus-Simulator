@@ -1,8 +1,8 @@
-package Model;
+package Data;
   
 import java.util.Random;
 
-public class ListaLigada implements IListaLigada {
+public class LinkedList implements ILinkedList {
     private No inicio; // ref para primeiro elemento
     private No fim;    // ref para ultimo elemento
 
@@ -10,7 +10,7 @@ public class ListaLigada implements IListaLigada {
     private Random r = new Random(System.currentTimeMillis());
 
     // -------------------------------------------------------------
-    public ListaLigada() {   
+    public LinkedList() {   
         setInicio(null);
         setFim(null);
         setQtdNos(0);
@@ -119,9 +119,10 @@ public class ListaLigada implements IListaLigada {
             }
             temp.setAnterior(null);
             temp.setProximo(null);
+
+            // Decrementa qtidade de nos
+            setQtdNos(getQtdNos() - 1);
         }
-        // Decrementa qtidade de nos
-        setQtdNos(getQtdNos() - 1);
         return temp;
     }
 
@@ -142,9 +143,9 @@ public class ListaLigada implements IListaLigada {
             }
             temp.setAnterior(null);
             temp.setProximo(null);
+            setQtdNos(getQtdNos() - 1);
         }
         // Decrementa qtidade de nos
-        setQtdNos(getQtdNos() - 1);
         return temp;
     }
 
@@ -169,6 +170,7 @@ public class ListaLigada implements IListaLigada {
             noAtual.getProximo().setAnterior(novoNo);
         }
         novoNo.setAnterior(noAtual);
+        
         noAtual.setProximo(novoNo); 
         // Incrementa quantidade de nos
         setQtdNos(getQtdNos() + 1);
@@ -196,13 +198,14 @@ public class ListaLigada implements IListaLigada {
             else {
                 noAtual.getAnterior().setProximo(noAtual.getProximo());
                 noAtual.getProximo().setAnterior(noAtual.getAnterior());
+                setQtdNos(getQtdNos() - 1);
             }
             noAtual.setAnterior(null);
             noAtual.setProximo(null);
-
+            
+            // Decrementa qtidade de nos
         }
-        // Decrementa qtidade de nos
-        setQtdNos(getQtdNos() - 1);
+      
         return noAtual;
     }
 
@@ -246,5 +249,6 @@ public class ListaLigada implements IListaLigada {
         setInicio(null);
         setFim(null);
 
+        setQtdNos(0);
     }
 }  

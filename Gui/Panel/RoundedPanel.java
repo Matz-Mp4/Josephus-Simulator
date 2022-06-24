@@ -1,38 +1,44 @@
-package Gui;
+package Gui.Panel;
 
-import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class that generates a JPanel with rounded borders. It needs to settle the backgound of the panel with the background of your main window to creates a transparency ilusion
+ * The class credits belongs of an stackoverflow author
+ * @url https://stackoverflow.com/questions/15025092/border-with-rounded-corners-transparency
+ */
 public class RoundedPanel extends JPanel
 {
     private Color backgroundColor;
     private int cornerRadius = 15;
+    private  Graphics2D graphics;
 
     public RoundedPanel(LayoutManager layout, int radius) {
         super(layout);
-        //super.setSize(new Dimension(radius,radius));
         cornerRadius = radius;
     }
 
     public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
         super(layout);
-        //super.setSize(new Dimension(radius,radius));
         cornerRadius = radius;
         backgroundColor = bgColor;
     }
 
     public RoundedPanel(int radius) {
         super();
-        //super.setSize(new Dimension(radius,radius));
         cornerRadius = radius;
     }
 
     public RoundedPanel(int radius, Color bgColor) {
         super();
-        //super.setSize(new Dimension(radius,radius));
         cornerRadius = radius;
         backgroundColor = bgColor;
+    }
+
+    public void changeColor(Color bgColor){
+        backgroundColor = bgColor;
+        graphics.setColor(backgroundColor);
     }
 
     @Override
@@ -41,7 +47,7 @@ public class RoundedPanel extends JPanel
         Dimension arcs = new Dimension(cornerRadius, cornerRadius);
         int width = getWidth();
         int height = getHeight();
-        Graphics2D graphics = (Graphics2D) g;
+        graphics = (Graphics2D) g;
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         //Draws the rounded panel with borders.
@@ -54,4 +60,5 @@ public class RoundedPanel extends JPanel
         graphics.setColor(getForeground());
         graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
     }
+
 }

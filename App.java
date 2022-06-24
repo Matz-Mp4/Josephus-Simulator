@@ -1,8 +1,8 @@
-import Gui.Window;
+import Application.Start;
 
 public class App{
 
   public static void main(String[] args){
-    new Window();
+    Start main = new Start();
   }
 }

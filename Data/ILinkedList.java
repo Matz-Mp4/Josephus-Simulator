@@ -1,6 +1,6 @@
-package Model;
+package Data;
 
-public interface IListaLigada{
+public interface ILinkedList{
     public boolean estaVazia(); 
     public void inserirInicio(Object novo);
     public void inserirFim(Object novo);
@@ -11,4 +11,5 @@ public interface IListaLigada{
     public Object remover(long chave);
     public String toStringDoFim();
     public int getQtdNos();
+    public void limparLista();
 }
