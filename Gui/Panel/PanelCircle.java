@@ -59,16 +59,21 @@ public class PanelCircle extends JPanel{
     int centerY = (int) (getMinimumSize().height/2)-35; //add 35 gap between components
     int range = centerY;
     double angule;
-    int amountCircles = 360/amount;
+    int anguleAux = 360/amount;
     int j = 0;
 
     for(int i = 1; i <= amount; i++){
-      j = amountCircles + j;
+      //Calculate the next angule 
+      j = anguleAux + j;
+      
       RoundedPanel aux = addCircle();
+      //Convert the angule in radian
       angule = (Math.PI/180) * j;
+      //Calculate the coordinates
       double boundX = Math.cos(angule) * range + centerX;
       double boundY = Math.sin(angule) * range + centerY;
-      aux.setBounds((int)boundX, (int)boundY, 30, 30); //height and width configure the panel shape
+      //Set the position and the 
+      aux.setBounds((int)boundX, (int)boundY, 35, 35); //height and width configure the panel shape
       add(aux);
     }
   }

@@ -1,13 +1,15 @@
-package Application;
+package Gui;
 
 import javax.swing.JFrame;
-
-import Gui.GuiUtils;
 import Gui.Panel.*;
-import Application.Events.*;
-
 import java.awt.*;
 
+/**
+ * Main GUI class, to which all other components will be added
+ * @author: Luis Felipe A. B. Matos
+ * @author: Mateus Assalti Santana
+ * @version: 1.0
+ */
 public class Window extends JFrame{
   
   private PanelTitle pnlTitle;
@@ -17,16 +19,18 @@ public class Window extends JFrame{
   public Window(){
     initialize();
   }
+
   /** Configure the main window elements
+   * @return void
    */
   private void initialize(){
 
-    setMinimumSize(new Dimension(1000, 700));
+    setMinimumSize(new Dimension(1400, 1000));
     setLayout(new BorderLayout());
+    
     add(getPnlTitle(), BorderLayout.PAGE_START);   
     add(getPnlMenu(), BorderLayout.PAGE_END);
     setVisible(true);
-
     add(getPnlCircle(), BorderLayout.CENTER);
     setVisible(true);
     setResizable(false);
@@ -36,7 +40,10 @@ public class Window extends JFrame{
 
   }
 
-
+/**
+ * Returns the panel that contains the title
+ * @return PanelTitle
+ */
   private PanelTitle getPnlTitle(){
 
     if(pnlTitle == null){
@@ -45,6 +52,10 @@ public class Window extends JFrame{
     return pnlTitle;
   }
 
+  /**
+   * Returns the panel that contains the menu with options
+   * @return PanelMenu
+   */
   public PanelMenu getPnlMenu(){
     if(pnlMenu == null){
       pnlMenu = new PanelMenu();
@@ -53,7 +64,10 @@ public class Window extends JFrame{
     return pnlMenu;
   }
 
-
+/**
+ * Returns the panel that contains the circles 
+ * @return PanelCircle
+ */
   public PanelCircle getPnlCircle(){
     if(pnlCircle == null){
       pnlCircle = new PanelCircle(getSizeComponents());
@@ -61,6 +75,10 @@ public class Window extends JFrame{
     return pnlCircle;
   }
 
+  /**
+   * Calculates the PanelCircle's Dimension
+   * @return Dimension
+   */
   private Dimension getSizeComponents(){
     Dimension aux = null;
     Dimension pnlTitleDimension = pnlTitle.getSize();

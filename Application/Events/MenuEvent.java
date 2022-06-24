@@ -12,10 +12,24 @@ import Data.Person;
 
 public class MenuEvent{
 
-  //private static StatesButton sbValidator = new StatesButton();
   private JosephusSimulation jsAux = new JosephusSimulation();
   
+  /**
+    * Set events of the PanelMenus' components 
+    * @param PanelMneu,  
+    * @param PanelCircle 
+    * @param ILinkedList
+    * @return void
+   */
   public void setEvent(PanelMenu pnlMenu, PanelCircle pnlCircle, ILinkedList list){
+
+    /**
+      * Set event of StartButton: everytime you click it 
+      *                           he creates a new Josephus' 
+      *                           simulation presseted with 
+      *                           the data from the other 
+      *                           components
+     */
     pnlMenu.getBtnStart().addActionListener(new ActionListener(){    
       public void actionPerformed(ActionEvent e){
           if(!jsAux.getSimulating()){
@@ -28,13 +42,19 @@ public class MenuEvent{
           
           //Creating a new reference/thread of simulator
           jsAux = new JosephusSimulation(list, pnlMenu.getSliderStep().getValue(), pnlMenu.getSliderAmount().getValue());        
-           int delay = 1000/pnlMenu.getSliderDelay().getValue();
+          int delay = 1000/pnlMenu.getSliderDelay().getValue();
           jsAux.setDelay(delay);
           pnlMenu.getStatesButton().setPlayingStatus(true);
           jsAux.start();
         }
       }
     });
+
+     /**
+      * Set event of StopButton:  everytime you click it, 
+      *                           it sends a signal to stop 
+      *                           simulation 
+     */
 
     pnlMenu.getBtnStop().addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
@@ -43,32 +63,44 @@ public class MenuEvent{
           }
         }
     });
-
+    /**
+      * Set event of SliderAmount: everytime you slide it to right or to left, 
+      *                            he changes the amount of circles in the window
+     */
     pnlMenu.getSliderAmount().addChangeListener(new ChangeListener() {
-
         public void stateChanged(ChangeEvent e){
           int amountCircles;
           amountCircles = pnlMenu.getSliderAmount().getValue(); 
         
-          if (pnlMenu.getSliderAmount().getValueIsAdjusting()) {
-            pnlCircle.removeAll();
-            pnlCircle.setCirclePlaces(amountCircles);
-            pnlCircle.revalidate();
-            pnlCircle.repaint();
+          if(jsAux.getSimulating() == false){
+      
+            if (pnlMenu.getSliderAmount().getValueIsAdjusting()) {
+              pnlCircle.removeAll();
+              pnlCircle.setCirclePlaces(amountCircles);
+              pnlCircle.revalidate();
+              pnlCircle.repaint();
+            }
           }
         }
     });
 
+     /**
+      * Set event of SliderAmount: everytime you slide it to right or to left, 
+      *                            he changes the amount of steps 
+     */
     pnlMenu.getSliderStep().addChangeListener(new ChangeListener(){
       public void stateChanged(ChangeEvent e){
 
       }
     });
 
+     /**
+      * Set event of SliderAmount: everytime you slide it to right or to left, 
+      *                            he changes the delay 
+     */
      pnlMenu.getSliderDelay().addChangeListener(new ChangeListener(){
       public void stateChanged(ChangeEvent e){
         int delay = 1000/pnlMenu.getSliderDelay().getValue();
-        //System.out.println(delay);
         jsAux.setDelay(delay);
       }
     });

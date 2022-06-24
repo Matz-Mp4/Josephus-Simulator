@@ -170,6 +170,7 @@ public class LinkedList implements ILinkedList {
             noAtual.getProximo().setAnterior(novoNo);
         }
         novoNo.setAnterior(noAtual);
+        
         noAtual.setProximo(novoNo); 
         // Incrementa quantidade de nos
         setQtdNos(getQtdNos() + 1);

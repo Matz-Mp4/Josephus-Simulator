@@ -3,6 +3,11 @@ package Gui.Panel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class that generates a JPanel with rounded borders. It needs to settle the backgound of the panel with the background of your main window to creates a transparency ilusion
+ * The class credits belongs of an stackoverflow author
+ * @url https://stackoverflow.com/questions/15025092/border-with-rounded-corners-transparency
+ */
 public class RoundedPanel extends JPanel
 {
     private Color backgroundColor;
