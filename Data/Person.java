@@ -1,4 +1,4 @@
-package Model;
+package Data;
 
 public class Person {
 
@@ -16,7 +16,7 @@ public class Person {
     this.alive  = alive;
   }
 
-  public void setPanel(Object jpn){
+  public void setObject(Object jpn){
     this.jpn = jpn;
   }
 
@@ -26,7 +26,7 @@ public class Person {
     return this.alive;
   }
 
-  public Object getPanel(){
+  public Object getObject(){
     return this.jpn;
   }
 
