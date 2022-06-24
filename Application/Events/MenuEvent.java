@@ -66,7 +66,6 @@ public class MenuEvent{
           }
         }
     });
-
     /**
       * Set event of SliderAmount: everytime you slide it to right or to left, 
       *                            he changes the amount of circles in the window
