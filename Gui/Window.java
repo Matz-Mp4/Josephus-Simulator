@@ -1,10 +1,15 @@
 package Gui;
 
 import javax.swing.JFrame;
-import javax.swing.*;
+import Gui.Panel.*;
 import java.awt.*;
-import Gui.GuiUtils;
 
+/**
+ * Main GUI class, to which all other components will be added
+ * @author: Luis Felipe A. B. Matos
+ * @author: Mateus Assalti Santana
+ * @version: 1.0
+ */
 public class Window extends JFrame{
   
   private PanelTitle pnlTitle;
@@ -13,32 +18,33 @@ public class Window extends JFrame{
 
   public Window(){
     initialize();
-    
   }
+
   /** Configure the main window elements
+   * @return void
    */
   private void initialize(){
-    setLayout(new BorderLayout());
 
-    add(getPnlTitle(), BorderLayout.PAGE_START);
+    setMinimumSize(getScreenSize());
+    setLayout(new BorderLayout());
+    
+    add(getPnlTitle(), BorderLayout.PAGE_START);   
     add(getPnlMenu(), BorderLayout.PAGE_END);
-    
-    getPnlMenu().getHeight();
-    getPnlTitle().getHeight();
-    
-    PanelCircle aux = getPnlCircle();
-    aux.setCirclePlaces();
-    add(aux);
-    
+    setVisible(true);
+    add(getPnlCircle(), BorderLayout.CENTER);
     setVisible(true);
     setResizable(false);
     getContentPane().setBackground(GuiUtils.BACKGROUND);
     getContentPane().setForeground(GuiUtils.FOREGROUND);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    setSize(500, 600);
 
+    setLocationRelativeTo(null);
   }
 
+/**
+ * Returns the panel that contains the title
+ * @return PanelTitle
+ */
   private PanelTitle getPnlTitle(){
 
     if(pnlTitle == null){
@@ -47,7 +53,11 @@ public class Window extends JFrame{
     return pnlTitle;
   }
 
-  private PanelMenu getPnlMenu(){
+  /**
+   * Returns the panel that contains the menu with options
+   * @return PanelMenu
+   */
+  public PanelMenu getPnlMenu(){
     if(pnlMenu == null){
       pnlMenu = new PanelMenu();
     }
@@ -55,11 +65,38 @@ public class Window extends JFrame{
     return pnlMenu;
   }
 
-
-  private PanelCircle getPnlCircle(){
+/**
+ * Returns the panel that contains the circles 
+ * @return PanelCircle
+ */
+  public PanelCircle getPnlCircle(){
     if(pnlCircle == null){
-      pnlCircle = new PanelCircle();
+      pnlCircle = new PanelCircle(getSizeComponents());
     }
     return pnlCircle;
+  }
+
+  /**
+   * Calculates the PanelCircle's Dimension
+   * @return Dimension
+   */
+  private Dimension getSizeComponents(){
+    Dimension aux = null;
+    Dimension pnlTitleDimension = pnlTitle.getSize();
+    Dimension pnlMenuDimension = pnlMenu.getSize();
+    Dimension pnlFrame = this.getMinimumSize();
+    double height =  pnlFrame.getHeight() - (pnlTitleDimension.getHeight() + pnlMenuDimension.getHeight());
+    aux = new Dimension((int) pnlFrame.getWidth(), (int) height);
+    return aux;
+  }
+
+  /**
+   * Gets the dimension of user's screen and adjust some gaps
+   * @return Dimension
+   */
+  private Dimension getScreenSize(){
+    Dimension principal = Toolkit.getDefaultToolkit().getScreenSize();
+    principal.setSize(principal.getWidth()-350, principal.getHeight()-75);
+    return principal;
   }
 }
